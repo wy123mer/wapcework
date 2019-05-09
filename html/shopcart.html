@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贝贝网</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/shopcart.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+	<div class="box1">
+		<img src="../img/gouwuche.png" alt="">
+		<p>购物车还没有添加商品~</p>
+	</div>
+	<div class="box2">
+		
+			<!-- section -->
+			<section>
+				<a href="javascript:;" class="warp">
+					<div class="warp_t">
+						<div class="warp_l">
+							<input type="checkbox" class="checkk" checked>
+							<span>萨夫百德旗舰店</span>
+							<img src="../img/right.png" alt="">
+						</div>
+						<div class="warp_r">
+							<span class='first'>领劵</span>
+							<span  class="edit">编辑</span>
+						</div>
+					</div>
+					<div class="warp_b">
+						<input type="checkbox" class="check" checked>
+						<div class="bt_r">
+							<img src="../img/gwc.webp" alt="">
+							<div class="detail">
+								<p>奶奶装夏装衬衫60-70岁中老年人女装套装老太太衣服妈妈夏季衬衣</p>
+								<span>2XL【建议105-120】, 红色上衣+裤子</span>
+								<div class="count">
+									<b>￥<span>88</span></b>
+									<i>×<span>1</span></i>
+								</div>
+							</div>
+							<div class="reckon">
+								<span class="prev">-</span>
+								<span>1</span>
+								<span class="next">+</span>
+							</div>
+					
+					</div>
+						
+					</div>
+					<p class="p">小计：￥<span>88</span></p>
+				</a>
+				<a href="javascript:;" class="warp">
+					<div class="warp_t">
+						<div class="warp_l">
+							<input type="checkbox" class="checkk" checked>
+							<span>萨夫百德旗舰店</span>
+							<img src="../img/right.png" alt="">
+						</div>
+						<div class="warp_r">
+							<span class='first'>领劵</span>
+							<span  class="edit">编辑</span>
+						</div>
+					</div>
+					<div class="warp_b">
+						<input type="checkbox" class="check" checked>
+						<div class="bt_r">
+							<img src="../img/gwc.webp" alt="">
+							<div class="detail">
+								<p>奶奶装夏装衬衫60-70岁中老年人女装套装老太太衣服妈妈夏季衬衣</p>
+								<span>2XL【建议105-120】, 红色上衣+裤子</span>
+								<div class="count">
+									<b>￥<span>83A</span></b>
+									<i>×<span>1</span></i>
+								</div>
+							</div>
+							<div class="reckon">
+								<span class="prev">-</span>
+								<span>1</span>
+								<span class="next">+</span>
+							</div>
+					
+					</div>
+						
+					</div>
+					<p class="p">小计：￥<span>88</span></p>
+				</a>
+
+				
+
+			</section>
+
+			<div class="foot">
+				<div class="footer">
+					<p><input type="checkbox" id="checkAll" checked>全选</p>
+					<div class="price">
+						<div class="zong">
+							<p>总计：￥<span>0.00</span></p>
+							<span>立减：0.00</span>
+						</div>
+						<p class="zcount">总计(<span>0</span>)</p>
+					</div>
+
+				</div>
+				<footer>
+					<a href="index.html" >
+						<i class="iconfont icon-temai"></i>
+						<span>今日特卖</span>
+					</a>
+					<a href="list_nine.html"> 
+						<i class="iconfont icon-icon-test"></i>
+						<span>9.9</span>
+					</a>
+					<a href="colonel.html" >
+						<i class="iconfont icon-dunpai"></i>
+						<span>团长</span>
+					</a>
+					<a href="shopcart.html" class="font">
+						<i class="iconfont icon-gouwuche"></i>
+						<span>购物车</span>
+					</a>
+					<a href="mine.html"> 
+						<i class="iconfont icon-home_my"></i>
+						<span>我的</span>
+					</a>
+				</footer>
+			</div>
+	</div>
+</body>
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$("footer p").click(function(){
+		$(this).addClass("font")
+		$("footer p").not(this).removeClass("font");
+	})
+	$(function(){
+		$(".edit").toggle(
+			function(){
+				$(this).parent().parent().parent().find(".bt_r .detail").css({"display":"none"});
+				$(this).parent().parent().parent().find(".bt_r .reckon").css({"display":"block"});
+				$(this).html("完成");
+			},
+			function(){
+				$(this).parent().parent().parent().find(".bt_r .detail").css({"display":"block"});
+				$(this).parent().parent().parent().find(".bt_r .reckon").css({"display":"none"});
+				$(this).html("编辑");
+			}
+
+		)
+	})
+
+	$(function(){
+		price();
+		var count=1;
+		$(".prev").click(function(){
+			
+			count--;
+			if(count<=1){
+				count=1;
+			}
+			$(this).next().html(count);
+			$(this).parent().prev().find("i span").html(count);
+			price();
+			change();
+		})
+		$(".next").click(function(){
+			
+			count++;
+			$(this).prev().html(count);
+			$(this).parent().prev().find("i span").html(count);
+			price();
+			change();
+			
+		})
+	})
+	
+
+
+
+	$.fn.extend({
+		checkAll:function(isCheck){
+			this.each(function(){
+				this.checked=isCheck;
+				change();
+			})
+		}
+	})
+
+	$(function(){
+		change();
+		$("#checkAll").click(function(){
+			$(".check").checkAll(this.checked);
+			$(".checkk").checkAll(this.checked);
+			if($("#checkAll")[0].checked == true){			
+				change();
+			}else{
+				$(".zong p span").html("0.00");
+			 	$(".zcount span").html("0.00");
+			}
+		
+		})
+
+		$(".check").click(function(){
+			 if($(".check").is(":checked")==true){
+			 	$(this).parent().prev().find(".checkk")[0].checked=true;
+			 	change();
+			 }else{
+			 	$(".zong p span").html("0.00");
+			 	$(".zcount span").html("0.00");
+			 }			
+		})
+		$(".checkk").click(function(){
+			 if($(".checkk").is(":checked")==true){
+			 	$(this).parent().parent().next().find(".check")[0].checked=true;           
+			 	change();
+			 }else{
+			 	$(".zong p span").html("0.00");
+			 	$(".zcount span").html("0.00");
+			 }			
+		})
+		$(".check").click(function() {
+	        var i = 0;
+	        $(".check").each(function(){
+	            if ($(this)[0].checked == false) {
+	            	$(this).parent().prev().find(".checkk")[0].checked=false;
+	                $("#checkAll")[0].checked = false;
+	            } else {
+	                // 如果是选中的，累加，和全部长度比较
+	                i += 1;
+	                if (i == $(".check").length) {
+	                    $("#checkAll")[0].checked = true;
+	            
+	            	}
+	             }
+	      
+			})
+        })
+        $(".checkk").click(function() {
+	        var i = 0;
+	        $(".checkk").each(function(){
+	            if ($(this)[0].checked == false) {
+	            	$(this).parent().parent().next().find(".check")[0].checked=false;
+	                $("#checkAll")[0].checked = false;
+
+	            } else {
+	                // 如果是选中的，累加，和全部长度比较
+	                i += 1;
+	                if (i == $(".check").length) {
+	                    $("#checkAll")[0].checked = true;
+	            
+	            	}
+	             }
+	      
+			})
+        })
+      
+	})
+
+
+
+	function price(){
+		var price=0;
+		$(".warp").each(function() {
+			price=parseFloat($(this).find("b span").html())*parseInt($(this).find("i span").html());
+			$(this).find(".p span").html(price);
+		})
+		
+	}
+
+	 function change(){
+            var allprice = 0;  
+            var allcount=0;  
+            $(".warp").each(function() {
+            	              
+                if ($(this).find(".check").is(":checked") == true&&$(this).find(".checkk").is(":checked")==true) {
+               
+                     allprice+=parseFloat($(this).find("b span").html())*parseInt($(this).find("i span").html());
+                    allcount+= parseInt($(this).find("i span").html());
+                     $(".zong p span").html(allprice);  
+         			 $(".zcount span").html(allcount);
+                   
+                }else{
+                	return;
+                }
+            });
+         
+       }
+
+
+</script>
